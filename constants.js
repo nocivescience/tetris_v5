@@ -1,4 +1,4 @@
-const GAME_CLOCK = 1000 
+const GAME_CLOCK = 500 
 const BLOCK_SIDE_LENGTH = 30 
 const ROWS = 20 
 const COLS = 10 
@@ -74,10 +74,13 @@ class Piece {
                 if (cell > 0) {
                     this.ctx.fillStyle = COLORS[cell] 
                     this.ctx.fillRect(this.x + j, this.y + i, 1, 1)
+                    this.ctx.strokeRect(this.x + j, this.y + i, 1, 1)
+                    this.ctx.strokeStyle = 'black'
+                    this.ctx.lineWidth = .1;
                     this.ctx.beginPath();
-                    this.ctx.fillStyle='rgba(255,255,255,.5)'
+                    this.ctx.fillStyle='black';
                     this.ctx.font='1px arial';
-                    this.ctx.fillText(cell,this.x+j+.2,this.y+i+.9)
+                    this.ctx.fillText(cell,this.x+j+.2,this.y+i+.9);
                     this.ctx.fill();
                     this.ctx.closePath();
                 }
@@ -131,6 +134,17 @@ class GameModel {
                 let cell = this.grid[i][j] 
                 this.ctx.fillStyle = COLORS[cell] 
                 this.ctx.fillRect(j, i, 1, 1);
+                if(cell!==0){   
+                    this.ctx.strokeRect(j, i, 1, 1);
+                    this.ctx.strokeStyle = 'black'
+                    this.ctx.lineWidth = .1;
+                    this.ctx.beginPath();
+                    this.ctx.fillStyle='black';
+                    this.ctx.font='1px arial';
+                    this.ctx.fillText(cell,j+.2,i+.9);
+                    this.ctx.fill();
+                    this.ctx.closePath();
+                }
             }
         }
 
